@@ -162,7 +162,7 @@ class Scalar:
         assert h is not None
         assert h.last_fn is not None
         assert h.ctx is not None
-        
+
         gradients = h.last_fn._backward(h.ctx, d_output)
         return zip(h.inputs, gradients)
 

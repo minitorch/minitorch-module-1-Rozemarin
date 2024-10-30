@@ -46,7 +46,7 @@ class Linear(minitorch.Module):
             result = self.bias[j].value
             for i in range(len(inputs)): 
                 result += inputs[i] * self.weights[i][j].value  # Dot product calculation
-            output.append(minitorch.Scalar(result))
+            output.append(result)
         return output
 
 

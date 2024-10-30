@@ -2,6 +2,7 @@
 Be sure you have minitorch installed in you Virtual Env.
 >>> pip install -Ue .
 """
+
 import random
 
 import minitorch
@@ -44,8 +45,10 @@ class Linear(minitorch.Module):
         output = []
         for j in range(len(self.bias)):
             result = self.bias[j].value
-            for i in range(len(inputs)): 
-                result += inputs[i] * self.weights[i][j].value  # Dot product calculation
+            for i in range(len(inputs)):
+                result += (
+                    inputs[i] * self.weights[i][j].value
+                )  # Dot product calculation
             output.append(result)
         return output
 

@@ -37,33 +37,41 @@ from typing import Callable, Iterable, List, TypeVar
 def mul(x: float, y: float) -> float:
     return float(x * y)
 
+
 # Returns the input unchanged
 def id(x: float) -> float:
     return float(x)
+
 
 # Adds two numbers
 def add(x: float, y: float) -> float:
     return float(x + y)
 
+
 # Negates a number
 def neg(x: float) -> float:
     return float(-x)
+
 
 # Checks if one number is less than another
 def lt(x: float, y: float) -> float:
     return float(int(x < y))
 
+
 # Checks if two numbers are equal
 def eq(x: float, y: float) -> float:
     return float(int(x == y))
+
 
 # Returns the larger of two numbers
 def max(x: float, y: float) -> float:
     return float(x) if x > y else float(y)
 
+
 # Checks if two numbers are close in value
 def is_close(x: float, y: float, tol: float = 1e-5) -> float:
     return float(int(abs(x - y) <= tol))
+
 
 # Calculates the sigmoid function
 def sigmoid(x: float) -> float:
@@ -72,34 +80,40 @@ def sigmoid(x: float) -> float:
     else:
         return math.exp(x) / (1.0 + math.exp(x))
 
+
 # Applies the ReLU activation function
 def relu(x: float) -> float:
     return max(0, x)
+
 
 # Calculates the natural logarithm
 def log(x: float) -> float:
     return math.log(x)
 
+
 # Calculates the exponential function
 def exp(x: float) -> float:
     return math.exp(x)
+
 
 # Calculates the reciprocal
 def inv(x: float) -> float:
     return 1 / x if x != 0 else 0.0
 
+
 # Computes the derivative of log times a second argument
 def log_back(x: float, d: float) -> float:
-    return d / x if x != 0 else 0.0  
+    return d / x if x != 0 else 0.0
+
 
 # Computes the derivative of reciprocal times a second argument
 def inv_back(x: float, d: float) -> float:
-    return -d / (x * x) if x != 0 else 0.0 
+    return -d / (x * x) if x != 0 else 0.0
+
 
 # Computes the derivative of ReLU times a second argument
 def relu_back(x: float, d: float) -> float:
     return d if x > 0 else 0.0
-
 
 
 # ## Task 0.3
@@ -117,8 +131,9 @@ def relu_back(x: float, d: float) -> float:
 # - sum: sum lists
 # - prod: take the product of lists
 
-T = TypeVar('T')  # Input type
-U = TypeVar('U')  # Output type
+T = TypeVar("T")  # Input type
+U = TypeVar("U")  # Output type
+
 
 # Higher-order function that applies a given function to each element of an iterable
 def map(func: Callable[[T], U], iterable: Iterable[T]) -> List[U]:
@@ -127,12 +142,16 @@ def map(func: Callable[[T], U], iterable: Iterable[T]) -> List[U]:
         arr.append(func(el))
     return arr
 
+
 # Higher-order function that combines elements from two iterables using a given function
-def zipWith(func: Callable[[T, T], U], iterable1: Iterable[T], iterable2: Iterable[T]) -> List[U]:
+def zipWith(
+    func: Callable[[T, T], U], iterable1: Iterable[T], iterable2: Iterable[T]
+) -> List[U]:
     arr = []
     for el1, el2 in zip(iterable1, iterable2):
         arr.append(func(el1, el2))
     return arr
+
 
 # Higher-order function that reduces an iterable to a single value using a given function
 def reduce(func: Callable[[T, T], T], iterable: Iterable[T], initial: T) -> T:
@@ -141,17 +160,21 @@ def reduce(func: Callable[[T, T], T], iterable: Iterable[T], initial: T) -> T:
         ans = func(ans, el)
     return ans
 
+
 # Negate all elements in a list using map
 def negList(lst: List[float]) -> List[float]:
     return map(neg, lst)
+
 
 # Add corresponding elements from two lists using zipWith
 def addLists(lst1: List[float], lst2: List[float]) -> List[float]:
     return zipWith(add, lst1, lst2)
 
+
 # Sum all elements in a list using reduce
 def sum(lst: List[float]) -> float:
     return reduce(add, lst, 0.0)
+
 
 # Calculate the product of all elements in a list using reduce
 def prod(lst: List[float]) -> float:
